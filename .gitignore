@@ -3,7 +3,8 @@
 # Objetivo: Evitar que ficheiros temporários, senhas, ficheiros de configuração 
 # local e binários compilados subam acidentalmente para o repositório.
 # ==============================================================================
-
+dependency-reduced-pom.xml
+target/
 # ------------------------------------------------------------------------------
 # 1. FICHEIROS DE SISTEMA E AMBIENTE
 # Ignora configurações do sistema operativo e ficheiros de variáveis de ambiente
