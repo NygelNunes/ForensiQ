@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox
+    spacing="0"
+    prefWidth="860"
+    prefHeight="680"
+    style="-fx-background-color: #0a1628;"
+    xmlns="http://javafx.com/javafx/21"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.genes.Controller">
+
+    <!-- ══════════════════════════════════════════════════════════
+         TOPBAR
+    ══════════════════════════════════════════════════════════ -->
+    <HBox
+        alignment="CENTER_LEFT"
+        spacing="10"
+        style="-fx-background-color: #06101e;
+               -fx-border-color: transparent transparent #1a3a6b transparent;
+               -fx-border-width: 0 0 1 0;">
+        <padding><Insets top="14" right="20" bottom="14" left="20"/></padding>
+
+        <Label fx:id="labelStatusDot" text="●" textFill="#1e7fd4"
+               style="-fx-font-size: 9px;"/>
+
+        <Label text="FLORENCE" textFill="#e8f0fe"
+               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Consolas';"/>
+
+        <Label text="/" textFill="#1a3a6b"
+               style="-fx-font-size: 14px; -fx-font-family: 'Consolas';"/>
+
+        <Label text="PDF Forensic Extractor" textFill="#6b8cba"
+               style="-fx-font-size: 12px; -fx-font-family: 'Consolas';"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Label fx:id="labelStatus" text="Awaiting file" textFill="#6b8cba"
+               style="-fx-font-size: 11px; -fx-font-family: 'Consolas';"/>
+
+        <Label text="  |  " textFill="#1a3a6b"
+               style="-fx-font-size: 11px; -fx-font-family: 'Consolas';"/>
+
+        <Label text="v1.0.0" textFill="#6b8cba"
+               style="-fx-background-color: #0f2040;
+                      -fx-font-size: 10px;
+                      -fx-font-family: 'Consolas';
+                      -fx-padding: 3 8 3 8;
+                      -fx-background-radius: 4;"/>
+    </HBox>
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         INPUT BAR
+    ══════════════════════════════════════════════════════════ -->
+    <HBox
+        spacing="10"
+        alignment="CENTER_LEFT"
+        style="-fx-background-color: #06101e;
+               -fx-border-color: transparent transparent #1a3a6b transparent;
+               -fx-border-width: 0 0 1 0;">
+        <padding><Insets top="12" right="20" bottom="12" left="20"/></padding>
+
+        <Label text="TARGET" textFill="#2d5a9e"
+               style="-fx-font-size: 10px; -fx-font-family: 'Consolas'; -fx-font-weight: bold;"/>
+
+        <TextField
+            fx:id="campoCaminho"
+            editable="false"
+            promptText="No file selected..."
+            HBox.hgrow="ALWAYS"
+            style="-fx-background-color: #0d1f38;
+                   -fx-text-fill: #e8f0fe;
+                   -fx-prompt-text-fill: #2d5a9e;
+                   -fx-border-color: #1a3a6b;
+                   -fx-border-width: 1;
+                   -fx-border-radius: 6;
+                   -fx-background-radius: 6;
+                   -fx-padding: 8 12 8 12;
+                   -fx-font-size: 12px;
+                   -fx-font-family: 'Consolas';"/>
+
+        <Button
+            text="Select PDF"
+            onAction="#escolherArquivo"
+            mnemonicParsing="false"
+            onMouseEntered="#onBotaoHover"
+            onMouseExited="#onBotaoSair"
+            style="-fx-background-color: #1e7fd4;
+                   -fx-text-fill: #ffffff;
+                   -fx-font-family: 'Consolas';
+                   -fx-font-size: 12px;
+                   -fx-font-weight: bold;
+                   -fx-border-radius: 6;
+                   -fx-background-radius: 6;
+                   -fx-padding: 8 16 8 16;
+                   -fx-cursor: hand;"/>
+    </HBox>
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         RESULTADO — ScrollPane com cards dinâmicos
+    ══════════════════════════════════════════════════════════ -->
+    <ScrollPane
+        fx:id="scrollResultado"
+        fitToWidth="true"
+        VBox.vgrow="ALWAYS"
+        style="-fx-background: #0a1628;
+               -fx-background-color: #0a1628;
+               -fx-border-color: transparent;">
+
+        <VBox
+            fx:id="areaResultado"
+            spacing="0"
+            style="-fx-background-color: #0a1628;">
+            <padding><Insets top="16" right="20" bottom="16" left="20"/></padding>
+
+            <!-- Empty state — visible before any analysis -->
+            <VBox alignment="CENTER" spacing="8"
+                  style="-fx-background-color: #0d1f38;
+                         -fx-border-color: #1a3a6b;
+                         -fx-border-width: 1;
+                         -fx-border-radius: 8;
+                         -fx-background-radius: 8;
+                         -fx-padding: 48;">
+                <Label text="No analysis started"
+                       textFill="#2d5a9e"
+                       style="-fx-font-size: 14px; -fx-font-family: 'Consolas'; -fx-font-weight: bold;"/>
+                <Label text="Select a PDF file to begin forensic extraction."
+                       textFill="#1a3a6b"
+                       style="-fx-font-size: 12px; -fx-font-family: 'Consolas';"/>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+
+
+    <!-- ══════════════════════════════════════════════════════════
+         STATUSBAR
+    ══════════════════════════════════════════════════════════ -->
+    <HBox
+        alignment="CENTER_LEFT"
+        spacing="16"
+        style="-fx-background-color: #06101e;
+               -fx-border-color: #1a3a6b transparent transparent transparent;
+               -fx-border-width: 1 0 0 0;">
+        <padding><Insets top="6" right="20" bottom="6" left="20"/></padding>
+
+        <Label text="Apache PDFBox 2.0.30" textFill="#2d5a9e"
+               style="-fx-font-size: 10px; -fx-font-family: 'Consolas';"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Label text="JavaFX 21" textFill="#2d5a9e"
+               style="-fx-font-size: 10px; -fx-font-family: 'Consolas';"/>
+    </HBox>
+
+</VBox>

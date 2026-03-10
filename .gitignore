@@ -1,0 +1,67 @@
+# ==============================================================================
+# .gitignore PADRÃO
+# Objetivo: Evitar que ficheiros temporários, senhas, ficheiros de configuração 
+# local e binários compilados subam acidentalmente para o repositório.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. FICHEIROS DE SISTEMA E AMBIENTE
+# Ignora configurações do sistema operativo e ficheiros de variáveis de ambiente
+# (onde normalmente ficam as credenciais de bases de dados como MySQL).
+# ------------------------------------------------------------------------------
+.env
+.env.local
+.DS_Store
+Thumbs.db
+*.log
+
+# ------------------------------------------------------------------------------
+# 2. EDITORES E IDEs
+# Ignora configurações locais do Visual Studio Code e outros editores para não 
+# sobrescrever as definições de quem clonar o projeto no futuro.
+# ------------------------------------------------------------------------------
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ------------------------------------------------------------------------------
+# 3. PHP / ESTRUTURAS MVC
+# Ignora a pasta vendor (dependências baixadas pelo Composer) pois elas podem
+# ser reinstaladas usando o composer.json.
+# ------------------------------------------------------------------------------
+/vendor/
+composer.phar
+*.sqlite
+
+# ------------------------------------------------------------------------------
+# 4. JAVA
+# Ignora ficheiros compilados (.class) e diretórios de build, garantindo que 
+# apenas o código-fonte (.java) vá para o GitHub.
+# ------------------------------------------------------------------------------
+*.class
+*.jar
+*.war
+*.ear
+/bin/
+/target/
+/.settings/
+.classpath
+.project
+
+# ------------------------------------------------------------------------------
+# 5. C / C++
+# Ignora ficheiros objetos e executáveis compilados. O GitHub deve armazenar 
+# apenas os ficheiros .c, .cpp e .h.
+# ------------------------------------------------------------------------------
+*.o
+*.obj
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.lib
