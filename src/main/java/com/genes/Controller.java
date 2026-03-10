@@ -1,8 +1,10 @@
 package com.genes;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -18,6 +20,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
@@ -50,6 +53,8 @@ public class Controller {
 
     // ─── Campos FXML ──────────────────────────────────────────────────────────
     @FXML
+    private HBox topBar;
+    @FXML
     private TextField campoCaminho;
     @FXML
     private ScrollPane scrollResultado;
@@ -60,6 +65,78 @@ public class Controller {
     @FXML
     private Label labelStatusDot;
 
+    // Variáveis para calcular o movimento da janela
+
+ // --- Variáveis de controle de janela ---
+    private double xOffset = 0;
+    private double yOffset = 0;
+
+    // --- Constantes de Estilo (Padrão DRY) ---
+    private static final String BOTAO_BASE = "-fx-font-size: 20px; -fx-font-family: 'Consolas'; -fx-font-weight: bold; -fx-cursor: hand; -fx-min-width: 40px; -fx-min-height: 30px;";
+    
+    private static final String MINIMIZAR_NORMAL = "-fx-background-color: transparent; -fx-text-fill: #6b8cba; " + BOTAO_BASE;
+    private static final String MINIMIZAR_HOVER  = "-fx-background-color: rgba(107,140,186,0.15); -fx-text-fill: #9ab5d9; " + BOTAO_BASE;
+    
+    private static final String FECHAR_NORMAL    = "-fx-background-color: transparent; -fx-text-fill: #e8f0fe; " + BOTAO_BASE;
+    private static final String FECHAR_HOVER     = "-fx-background-color: #c03a2b4b; -fx-text-fill: white; " + BOTAO_BASE;
+
+    @FXML
+    public void initialize() {
+        configurarArrastarJanela();
+    }
+
+    private void configurarArrastarJanela() {
+        topBar.setOnMousePressed(e -> {
+            xOffset = e.getSceneX();
+            yOffset = e.getSceneY();
+        });
+
+        topBar.setOnMouseDragged(e -> {
+            Stage stage = getStage(topBar);
+            stage.setX(e.getScreenX() - xOffset);
+            stage.setY(e.getScreenY() - yOffset);
+        });
+    }
+
+    // --- Ações de Janela ---
+
+    @FXML
+    private void fecharJanela(ActionEvent event) {
+        getStage((Node) event.getSource()).close();
+    }
+
+    @FXML
+    private void minimizarJanela(ActionEvent event) {
+        getStage((Node) event.getSource()).setIconified(true);
+    }
+
+    // --- Efeitos de Hover ---
+
+    @FXML 
+    private void onMinimizarHover(MouseEvent e) {
+        ((Button) e.getSource()).setStyle(MINIMIZAR_HOVER);
+    }
+
+    @FXML 
+    private void onMinimizarSair(MouseEvent e) {
+        ((Button) e.getSource()).setStyle(MINIMIZAR_NORMAL);
+    }
+
+    @FXML 
+    private void onFecharHover(MouseEvent e) {
+        ((Button) e.getSource()).setStyle(FECHAR_HOVER);
+    }
+
+    @FXML 
+    private void onFecharSair(MouseEvent e) {
+        ((Button) e.getSource()).setStyle(FECHAR_NORMAL);
+    }
+
+    // --- Métodos Utilitários ---
+
+    private Stage getStage(Node node) {
+        return (Stage) node.getScene().getWindow();
+    }
     // ─── Acao Principal ───────────────────────────────────────────────────────
     @FXML
     public void escolherArquivo() {

@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle; // Importação necessária
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color; 
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,13 +31,18 @@ public class App extends Application {
             Parent raiz = loader.load();
 
             Scene cena = new Scene(raiz, 860, 680);
+            cena.setFill(Color.TRANSPARENT);
+
+            // 2. Troca de UNDECORATED para TRANSPARENT
+            palcoPrincipal.initStyle(StageStyle.TRANSPARENT);
+
 
             palcoPrincipal.setTitle(TITULO);
             palcoPrincipal.setScene(cena);
             palcoPrincipal.setResizable(false);
             palcoPrincipal.centerOnScreen();
 
-            // Carrega o ícone com null-check — ícone faltando não derruba o app
+            // Carrega o ícone com null-check
             InputStream iconStream = getClass().getResourceAsStream(ICON_PATH);
             if (iconStream != null) {
                 palcoPrincipal.getIcons().add(new Image(iconStream));

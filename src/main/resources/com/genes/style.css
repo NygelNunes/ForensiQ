@@ -1,0 +1,56 @@
+/* Remove a borda padrão do ScrollPane e define o fundo */
+.scroll-pane {
+    -fx-background-color: #0a1628;
+    -fx-background: #0a1628;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Estilo geral da barra de rolagem */
+.scroll-bar:vertical, 
+.scroll-bar:horizontal {
+    -fx-background-color: #06101e;
+}
+
+/* O "trilho" por onde a barra corre */
+.scroll-bar:vertical .track, 
+.scroll-bar:horizontal .track {
+    -fx-background-color: #0a1628;
+    -fx-border-color: #1a3a6b;
+    -fx-border-width: 0 0 0 1; /* Uma linha sutil separando a barra do conteúdo */
+}
+
+/* A "pílula" que você clica e arrasta (Thumb) */
+.scroll-bar:vertical .thumb, 
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #1a3a6b;
+    -fx-background-radius: 4px;
+}
+
+/* Cor da pílula quando passa o mouse por cima */
+.scroll-bar:vertical .thumb:hover, 
+.scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #2d5a9e;
+}
+
+/* Cor da pílula quando está sendo clicada/arrastada */
+.scroll-bar:vertical .thumb:pressed, 
+.scroll-bar:horizontal .thumb:pressed {
+    -fx-background-color: #1e7fd4;
+}
+
+/* Remove os botões de setinha feios das pontas (Design mais moderno) */
+.scroll-bar .increment-button, 
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-pref-height: 0px; 
+    -fx-pref-width: 0px;
+}
+
+.scroll-bar .increment-arrow, 
+.scroll-bar .decrement-arrow {
+    -fx-shape: " "; /* Remove o desenho da seta */
+}
+

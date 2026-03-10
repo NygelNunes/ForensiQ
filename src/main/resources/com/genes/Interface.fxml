@@ -13,48 +13,51 @@
     spacing="0"
     prefWidth="860"
     prefHeight="680"
-    style="-fx-background-color: #0a1628;"
-    xmlns="http://javafx.com/javafx/21"
+    style="-fx-background-color: #0a1628; 
+           -fx-background-radius: 12; 
+           -fx-border-radius: 12; 
+           -fx-border-color: #1a3a6b; 
+           -fx-border-width: 1;"
+    stylesheets="@style.css"  xmlns="http://javafx.com/javafx/21"
     xmlns:fx="http://javafx.com/fxml/1"
     fx:controller="com.genes.Controller">
 
     <!-- ══════════════════════════════════════════════════════════
          TOPBAR
     ══════════════════════════════════════════════════════════ -->
-    <HBox
+     <HBox
+        fx:id="topBar" 
         alignment="CENTER_LEFT"
         spacing="10"
         style="-fx-background-color: #06101e;
+               -fx-background-radius: 12 12 0 0; /* Arredonda só em cima */
                -fx-border-color: transparent transparent #1a3a6b transparent;
                -fx-border-width: 0 0 1 0;">
-        <padding><Insets top="14" right="20" bottom="14" left="20"/></padding>
+        <padding><Insets top="14" right="14" bottom="14" left="20"/></padding>
 
-        <Label fx:id="labelStatusDot" text="●" textFill="#1e7fd4"
-               style="-fx-font-size: 9px;"/>
-
-        <Label text="FLORENCE" textFill="#e8f0fe"
-               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Consolas';"/>
-
-        <Label text="/" textFill="#1a3a6b"
-               style="-fx-font-size: 14px; -fx-font-family: 'Consolas';"/>
-
-        <Label text="PDF Forensic Extractor" textFill="#6b8cba"
-               style="-fx-font-size: 12px; -fx-font-family: 'Consolas';"/>
+        <Label fx:id="labelStatusDot" text="●" textFill="#1e7fd4" style="-fx-font-size: 9px;"/>
+        <Label text="FLORENCE" textFill="#e8f0fe" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Consolas';"/>
+        <Label text="/" textFill="#1a3a6b" style="-fx-font-size: 14px; -fx-font-family: 'Consolas';"/>
+        <Label text="PDF Forensic Extractor" textFill="#6b8cba" style="-fx-font-size: 12px; -fx-font-family: 'Consolas';"/>
 
         <Region HBox.hgrow="ALWAYS"/>
 
-        <Label fx:id="labelStatus" text="Awaiting file" textFill="#6b8cba"
-               style="-fx-font-size: 11px; -fx-font-family: 'Consolas';"/>
-
-        <Label text="  |  " textFill="#1a3a6b"
-               style="-fx-font-size: 11px; -fx-font-family: 'Consolas';"/>
-
+        <Label fx:id="labelStatus" text="Awaiting file" textFill="#6b8cba" style="-fx-font-size: 11px; -fx-font-family: 'Consolas';"/>
+        <Label text="  |  " textFill="#1a3a6b" style="-fx-font-size: 11px; -fx-font-family: 'Consolas';"/>
         <Label text="v1.0.0" textFill="#6b8cba"
-               style="-fx-background-color: #0f2040;
-                      -fx-font-size: 10px;
-                      -fx-font-family: 'Consolas';
-                      -fx-padding: 3 8 3 8;
-                      -fx-background-radius: 4;"/>
+               style="-fx-background-color: #0f2040; -fx-font-size: 10px; -fx-font-family: 'Consolas'; -fx-padding: 3 8 3 8; -fx-background-radius: 4;"/>
+
+<Region HBox.hgrow="ALWAYS" />
+
+<Button text="—" onAction="#minimizarJanela" focusTraversable="false"
+        style="-fx-font-size: 20px; -fx-background-color: transparent; -fx-text-fill: #6b8cba; -fx-font-family: 'Consolas'; -fx-font-weight: bold; -fx-cursor: hand; -fx-min-width: 40px; -fx-min-height: 30px;"
+        onMouseEntered="#onMinimizarHover"
+        onMouseExited="#onMinimizarSair"/>
+
+<Button text="⨯" onAction="#fecharJanela" focusTraversable="false"
+        style="-fx-font-size: 20px; -fx-background-color: transparent; -fx-text-fill: #e8f0fe; -fx-font-family: 'Consolas'; -fx-font-weight: bold; -fx-cursor: hand; -fx-min-width: 40px; -fx-min-height: 30px;"
+        onMouseEntered="#onFecharHover"
+        onMouseExited="#onFecharSair"/>
     </HBox>
 
 
